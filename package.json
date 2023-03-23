@@ -1,0 +1,15 @@
+{
+    "name": "packcraft",
+    "version": "0.0.0",
+    "main": "lib/index",
+    "types": "lib/index",
+    "repository": "https://github.com/Ambread/packcraft.git",
+    "author": "Ambread (https://github.com/Ambread)",
+    "license": "MIT",
+    "scripts": {
+        "build": "tsc"
+    },
+    "devDependencies": {
+        "typescript": "^5.0.2"
+    }
+}
