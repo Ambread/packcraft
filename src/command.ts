@@ -6,12 +6,12 @@ export const scoreboard = {
     objectives: {
         list: 'scoreboard objectives list',
         add: (objective: string, criteria: string, displayName?: string) =>
-            `scoreboard objectives add ${objective} ${criteria} ${displayName ?? ''}`,
+            `scoreboard objectives add ${objective} ${criteria} ${JSON.stringify(displayName) ?? ''}`,
         remove: (objective: string) => `scoreboard objectives remove ${objective}`,
         setDisplay: (slot: string, objective?: string) => `scoreboard objectives setdisplay ${slot} ${objective ?? ''}`,
         modify: (objective: string) => ({
             displayname: (displayName: string) =>
-                `scoreboard objectives modify ${objective} displayname ${displayName}`,
+                `scoreboard objectives modify ${objective} displayname ${JSON.stringify(displayName) ?? ''}`,
             renderType: (renderType: 'hearts' | 'integer') =>
                 `scoreboard objectives modify ${objective} rendertype ${renderType}`,
         }),
@@ -47,13 +47,13 @@ export const tag = (targets: Selector) => ({
 
 export const team = {
     list: (team?: string) => `team list ${team ?? ''}`,
-    add: (team: string, displayName?: string) => `team add ${team} ${displayName ?? ''}`,
+    add: (team: string, displayName?: string) => `team add ${team} ${JSON.stringify(displayName) ?? ''}`,
     remove: (team: string) => `team remove ${team}`,
     empty: (team: string) => `team empty ${team}`,
     join: (team: string, members?: Selector) => `team join ${team} ${members ?? ''}`,
     leave: (members: Selector) => `team join ${members}`,
     modify: (team: string) => ({
-        displayName: (displayName: string) => `team modify ${team} displayName ${displayName}`,
+        displayName: (displayName: string) => `team modify ${team} displayName ${JSON.stringify(displayName) ?? ''}`,
         color: (value: Color | 'reset') => `team modify ${team} color ${value}`,
         friendlyFire: (allowed: boolean) => `team modify ${team} friendlyFire ${allowed}`,
         seeFriendlyInvisibles: (allowed: boolean) => `team modify ${team} seeFriendlyInvisibles ${allowed}`,
