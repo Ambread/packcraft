@@ -11,5 +11,5 @@
     "[json][jsonc][typescript]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
-    "cSpell.words": ["Invisibles", "Keybind", "nametag", "packcraft", "rendertype", "setdisplay"]
+    "cSpell.words": ["bossbar", "Invisibles", "Keybind", "leasher", "nametag", "packcraft", "rendertype", "setdisplay"]
 }
