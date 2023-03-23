@@ -36,11 +36,3 @@ class Function {
 }
 
 export type Range = { from?: number; to?: number };
-
-function test() {
-    const datapack = new Datapack();
-    const testing = datapack.get('testing');
-
-    testing.functions.get('tick');
-    e.type('foo').type.not('foo');
-}

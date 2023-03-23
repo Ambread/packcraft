@@ -19,6 +19,12 @@ export type SelectorArgument = {
 }[keyof SelectorArgumentTypes];
 
 export class Selector {
+    public type = this.arg('type');
+    public tag = this.arg('tag');
+    public distance = this.arg('distance');
+    public team = this.arg('team');
+    public limit = this.arg('limit');
+
     constructor(
         private variable: SelectorVariable,
         private args: SelectorArgument[] = [],
@@ -35,11 +41,20 @@ export class Selector {
         return Object.assign(helper(false), { not: helper(true) });
     }
 
-    public type = this.arg('type');
-    public tag = this.arg('tag');
-    public distance = this.arg('distance');
-    public team = this.arg('team');
-    public limit = this.arg('limit');
+    public toString() {
+        const args = this.args
+            .map(({ key, value, inverted }) => {
+                const raw =
+                    typeof value === 'string' || typeof value === 'number'
+                        ? value
+                        : `${value.from}..${value.to}`;
+
+                return `${key}=${inverted ? '!' : ''}${raw}`;
+            })
+            .join(',');
+
+        return `@${this.variable}[${args}]`;
+    }
 }
 
 export const p = new Selector('p');

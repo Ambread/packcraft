@@ -7,6 +7,7 @@
     "author": "Ambread (https://github.com/Ambread)",
     "license": "MIT",
     "scripts": {
+        "dev": "tsc && node lib/dev",
         "build": "tsc"
     },
     "devDependencies": {
