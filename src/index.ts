@@ -1,4 +1,4 @@
-import { e } from './commands/Selector';
+import { e } from './commands/selector';
 
 class Collection<T> {
     private contents = new Map<string, T>();

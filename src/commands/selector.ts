@@ -1,5 +1,7 @@
 import { Range } from '..';
 
+export type Selector = string | SelectorBuilder;
+
 export type SelectorVariable = 'p' | 'r' | 'a' | 'e' | 's';
 
 export interface SelectorArgumentTypes {
@@ -18,7 +20,7 @@ export type SelectorArgument = {
     };
 }[keyof SelectorArgumentTypes];
 
-export class Selector {
+export class SelectorBuilder {
     public type = this.arg('type');
     public tag = this.arg('tag');
     public distance = this.arg('distance');
@@ -29,7 +31,7 @@ export class Selector {
 
     private arg<K extends keyof SelectorArgumentTypes>(key: K) {
         const helper = (inverted: boolean) => (value: SelectorArgumentTypes[K]) =>
-            new Selector(this.variable, [...this.args, { key, value, inverted } as SelectorArgument]);
+            new SelectorBuilder(this.variable, [...this.args, { key, value, inverted } as SelectorArgument]);
 
         return Object.assign(helper(false), { not: helper(true) });
     }
@@ -48,8 +50,8 @@ export class Selector {
     }
 }
 
-export const p = new Selector('p');
-export const r = new Selector('r');
-export const a = new Selector('a');
-export const e = new Selector('e');
-export const s = new Selector('s');
+export const p = new SelectorBuilder('p');
+export const r = new SelectorBuilder('r');
+export const a = new SelectorBuilder('a');
+export const e = new SelectorBuilder('e');
+export const s = new SelectorBuilder('s');

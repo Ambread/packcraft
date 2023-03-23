@@ -1,15 +1,16 @@
+import { TextComponent } from '../TextComponent';
 import { Color } from './arguments';
-import { Selector } from './Selector';
+import { Selector } from './selector';
 
 export const scoreboard = {
     objectives: {
         list: 'scoreboard objectives list',
-        add: (objective: string, criteria: string, displayName?: string) =>
+        add: (objective: string, criteria: string, displayName?: TextComponent) =>
             `scoreboard objectives add ${objective} ${criteria} ${JSON.stringify(displayName) ?? ''}`,
         remove: (objective: string) => `scoreboard objectives remove ${objective}`,
         setDisplay: (slot: string, objective?: string) => `scoreboard objectives setdisplay ${slot} ${objective ?? ''}`,
         modify: (objective: string) => ({
-            displayname: (displayName: string) =>
+            displayname: (displayName: TextComponent) =>
                 `scoreboard objectives modify ${objective} displayname ${JSON.stringify(displayName) ?? ''}`,
             renderType: (renderType: 'hearts' | 'integer') =>
                 `scoreboard objectives modify ${objective} rendertype ${renderType}`,
@@ -46,13 +47,14 @@ export const tag = (targets: Selector) => ({
 
 export const team = {
     list: (team?: string) => `team list ${team ?? ''}`,
-    add: (team: string, displayName?: string) => `team add ${team} ${JSON.stringify(displayName) ?? ''}`,
+    add: (team: string, displayName?: TextComponent) => `team add ${team} ${JSON.stringify(displayName) ?? ''}`,
     remove: (team: string) => `team remove ${team}`,
     empty: (team: string) => `team empty ${team}`,
     join: (team: string, members?: Selector) => `team join ${team} ${members ?? ''}`,
     leave: (members: Selector) => `team join ${members}`,
     modify: (team: string) => ({
-        displayName: (displayName: string) => `team modify ${team} displayName ${JSON.stringify(displayName) ?? ''}`,
+        displayName: (displayName: TextComponent) =>
+            `team modify ${team} displayName ${JSON.stringify(displayName) ?? ''}`,
         color: (value: Color | 'reset') => `team modify ${team} color ${value}`,
         friendlyFire: (allowed: boolean) => `team modify ${team} friendlyFire ${allowed}`,
         seeFriendlyInvisibles: (allowed: boolean) => `team modify ${team} seeFriendlyInvisibles ${allowed}`,
