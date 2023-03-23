@@ -6,9 +6,9 @@ export const scoreboard = {
     objectives: {
         list: 'scoreboard objectives list',
         add: (objective: string, criteria: string, displayName?: string) =>
-            `scoreboard objectives add ${objective} ${criteria} ${displayName}`,
+            `scoreboard objectives add ${objective} ${criteria} ${displayName ?? ''}`,
         remove: (objective: string) => `scoreboard objectives remove ${objective}`,
-        setDisplay: (slot: string, objective?: string) => `scoreboard objectives setdisplay ${slot} ${objective}`,
+        setDisplay: (slot: string, objective?: string) => `scoreboard objectives setdisplay ${slot} ${objective ?? ''}`,
         modify: (objective: string) => ({
             displayname: (displayName: string) =>
                 `scoreboard objectives modify ${objective} displayname ${displayName}`,
@@ -17,7 +17,7 @@ export const scoreboard = {
         }),
     },
     players: {
-        list: (target?: Selector) => `scoreboard players list ${target}`,
+        list: (target?: Selector) => `scoreboard players list ${target ?? ''}`,
         get: (target: Selector) => `scoreboard players get ${target}`,
         set: (targets: Selector, objective: string, score: number) =>
             `scoreboard players set ${targets} ${objective} ${score}`,
@@ -25,7 +25,7 @@ export const scoreboard = {
             `scoreboard players add ${targets} ${objective} ${score}`,
         remove: (targets: Selector, objective: string, score: number) =>
             `scoreboard players remove ${targets} ${objective} ${score}`,
-        reset: (targets: Selector, objective?: string) => `scoreboard players reset ${targets} ${objective}`,
+        reset: (targets: Selector, objective?: string) => `scoreboard players reset ${targets} ${objective ?? ''}`,
         enable: (targets: Selector, objective: string) => `scoreboard players enable ${targets} ${objective}`,
         operation: (
             targets: Selector,
@@ -46,11 +46,11 @@ export const tag = (targets: Selector) => ({
 });
 
 export const team = {
-    list: (team?: string) => `team list ${team}`,
-    add: (team: string, displayName?: string) => `team add ${team} ${displayName}`,
+    list: (team?: string) => `team list ${team ?? ''}`,
+    add: (team: string, displayName?: string) => `team add ${team} ${displayName ?? ''}`,
     remove: (team: string) => `team remove ${team}`,
     empty: (team: string) => `team empty ${team}`,
-    join: (team: string, members?: Selector) => `team join ${team} ${members}`,
+    join: (team: string, members?: Selector) => `team join ${team} ${members ?? ''}`,
     leave: (members: Selector) => `team join ${members}`,
     modify: (team: string) => ({
         displayName: (displayName: string) => `team modify ${team} displayName ${displayName}`,
