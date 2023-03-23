@@ -1,4 +1,4 @@
-import { Range } from '.';
+import { Range } from '..';
 
 export type SelectorVariable = 'p' | 'r' | 'a' | 'e' | 's';
 
@@ -25,18 +25,11 @@ export class Selector {
     public team = this.arg('team');
     public limit = this.arg('limit');
 
-    constructor(
-        private variable: SelectorVariable,
-        private args: SelectorArgument[] = [],
-    ) {}
+    constructor(private variable: SelectorVariable, private args: SelectorArgument[] = []) {}
 
     private arg<K extends keyof SelectorArgumentTypes>(key: K) {
-        const helper =
-            (inverted: boolean) => (value: SelectorArgumentTypes[K]) =>
-                new Selector(this.variable, [
-                    ...this.args,
-                    { key, value, inverted } as SelectorArgument,
-                ]);
+        const helper = (inverted: boolean) => (value: SelectorArgumentTypes[K]) =>
+            new Selector(this.variable, [...this.args, { key, value, inverted } as SelectorArgument]);
 
         return Object.assign(helper(false), { not: helper(true) });
     }
@@ -45,9 +38,7 @@ export class Selector {
         const args = this.args
             .map(({ key, value, inverted }) => {
                 const raw =
-                    typeof value === 'string' || typeof value === 'number'
-                        ? value
-                        : `${value.from}..${value.to}`;
+                    typeof value === 'string' || typeof value === 'number' ? value : `${value.from}..${value.to}`;
 
                 return `${key}=${inverted ? '!' : ''}${raw}`;
             })

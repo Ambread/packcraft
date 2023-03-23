@@ -1,6 +1,5 @@
 import { Datapack } from '.';
-import { scoreboard } from './command';
-import { e } from './selector';
+import { scoreboard, e } from './commands';
 
 const datapack = new Datapack();
 const testing = datapack.get('testing');

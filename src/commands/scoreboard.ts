@@ -1,6 +1,5 @@
-import { Selector } from './selector';
-
-export const say = (message: string) => `say ${message}`;
+import { Color } from './arguments';
+import { Selector } from './Selector';
 
 export const scoreboard = {
     objectives: {
@@ -67,21 +66,3 @@ export const team = {
         suffix: (suffix: string) => `team modify ${team} suffix ${suffix}`,
     }),
 };
-
-export type Color =
-    | 'black'
-    | 'dark_blue'
-    | 'dark_green'
-    | 'dark_aqua'
-    | 'dark_red'
-    | 'dark_purple'
-    | 'gold'
-    | 'gray'
-    | 'dark_gray'
-    | 'blue'
-    | 'green'
-    | 'aqua'
-    | 'red'
-    | 'light_purple'
-    | 'yellow'
-    | 'white';
